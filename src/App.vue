@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import axios from "axios";
 import { chart } from "./chart";
-import { onMounted } from "vue";
 import { getGeocodeFromNominatim } from "./map";
 
 let startDateYear: string;
@@ -13,20 +12,15 @@ const getLaunch = async () => {
   await axios.get(api).then((response) => {
     if (response.data) {
       launchData = response.data.results;
-      // console.log(launchData)
       getDataForBarChart();
       getLaunchLocation();
     }
   });
 };
 
-// onMounted(()=> {
-  
-// })
 let bool = false;
 const onSubmit = () => {
- bool = true;
-
+  bool = true;
 };
 
 const getDataForBarChart = async () => {
@@ -51,7 +45,6 @@ const getLaunchLocation = async () => {
   });
   getGeocodeFromNominatim(location);
 };
-
 </script>
 
 <template>
@@ -66,39 +59,33 @@ const getLaunchLocation = async () => {
       <button type="submit" @click="getLaunch">submit</button>
     </form>
 
-    <!-- <div v-if="bool">   -->
-     
-        <table>
-        
-            <tr >
-            <th>result:</th>
-          </tr>
-          
-        
-          <tr>
-            <th>Name</th>
-            <th>Location</th>
-            <th>Launch Window Start</th>
-            <th>Launch Window End</th>
-            <th>Rocket Name</th>
-          </tr>
+    <table>
+      <tr>
+        <th>result:</th>
+      </tr>
 
-          <tr v-for="item in launchData">
-            <td>{{ item.name }}</td>
-            <td>{{ item.pad.location.name }}</td>
-            <td>{{ item.window_start }}</td>
-            <td>{{ item.window_end }}</td>
-            <td>{{ item.rocket.configuration.name }}</td>
-          </tr>
-        </table>
-      <!-- </div> -->
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Launch Window Start</th>
+        <th>Launch Window End</th>
+        <th>Rocket Name</th>
+      </tr>
 
-      <div id="container"></div>
+      <tr v-for="item in launchData">
+        <td>{{ item.name }}</td>
+        <td>{{ item.pad.location.name }}</td>
+        <td>{{ item.window_start }}</td>
+        <td>{{ item.window_end }}</td>
+        <td>{{ item.rocket.configuration.name }}</td>
+      </tr>
+    </table>
 
-      <div id="map-container">
-        <div id="map" style="width: 80%; height: 100%"></div>
-      </div>
-    
+    <div id="container"></div>
+
+    <div id="map-container">
+      <div id="map" style="width: 80%; height: 100%"></div>
+    </div>
   </div>
 </template>
 

@@ -29,7 +29,7 @@ export const getGeocodeFromNominatim = async (location: string) => {
 
 const getMap = (geocode: any) => {
   // use forloop and see what happens
-  // console.log(geocode)
+
   let arr: any = [];
   const places = geocode.map(
     (item: { lon: number; lat: number; display_name: string }) => {
@@ -40,7 +40,7 @@ const getMap = (geocode: any) => {
         item.display_name,
       ];
 
-      return arr.push(...array)
+      return arr.push(...array);
     }
   );
 
