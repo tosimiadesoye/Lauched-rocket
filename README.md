@@ -4,7 +4,7 @@
 
 ## To install
 
-`cd Lauched-rocket`
+`cd Lauched-rocket npm install`
 
 ## To run
 
